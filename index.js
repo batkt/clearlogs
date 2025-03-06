@@ -1,5 +1,6 @@
 const { exec } = require('child_process');
 
+// Clear logs every 10 minutes (600000 ms)
 setInterval(() => {
   console.log('Clearing PM2 logs...');
   exec('rm -rf ~/.pm2/logs/*', (error, stdout, stderr) => {
@@ -26,5 +27,5 @@ setInterval(() => {
     console.log(`log: ${stdout}`);
   });
   
-}, 60000); // 10 minutes
+}, 86400000); // 1000 * 60 * 60 * 24 = 1 day
 
