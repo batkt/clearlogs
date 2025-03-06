@@ -12,8 +12,5 @@
         "update": "git pull && pm2 reload clearlogs"
     },
     "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "pm2": "^5.4.3"
-    }
+    "license": "ISC"
 }
