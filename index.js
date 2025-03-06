@@ -11,23 +11,31 @@ pm2.connect(function (err) {
   setInterval(() => {
     console.log('Clearing PM2 logs...');
 
-    pm2.killDaemon((err) => {
+    pm2.stop('appweb', function (err) {
       if (err) {
-        console.error('Failed to kill PM2 logs:', err);
+        console.error('Failed to stop PM2 logs:', err);
       } else {
-        console.log('PM2 kill successfully.');
+        console.log('PM2 stop successfully.');
+      }
+    });
+
+    pm2.delete('appweb', function (err) {
+      if (err) {
+        console.error('Failed to delete PM2 logs:', err);
+      } else {
+        console.log('PM2 delete successfully.');
       }
     });
     
     pm2.flush((err) => {
       if (err) {
-        console.error('Failed to clear PM2 logs:', err);
+        console.error('Failed to flush PM2 logs:', err);
       } else {
-        console.log('PM2 logs cleared successfully.');
+        console.log('PM2 logs flushed successfully.');
       }
     });
 
-     // Starting the app with the ecosystem file
+    // Starting the app with the ecosystem file
     pm2.start('../tureesShine/ecosystem.config.js', function (err, apps) {
       if (err) {
         console.error('Error while starting the apps:', err);
@@ -35,6 +43,14 @@ pm2.connect(function (err) {
       }
       console.log('PM2 apps have been started');
       pm2.disconnect(); // Disconnect PM2 once done
+    });
+
+    pm2.reload('appweb', function (err) {
+      if (err) {
+        console.error('Failed to appweb PM2 logs:', err);
+      } else {
+        console.log('PM2 appweb successfully.');
+      }
     });
 
   }, 60000); // 10 minutes
