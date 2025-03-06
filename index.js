@@ -36,7 +36,7 @@ pm2.connect(function (err) {
     });
 
     // Starting the app with the ecosystem file
-    pm2.start('../tureesShine/ecosystem.config.js', function (err, apps) {
+    pm2.start('/root/tureesShine/ecosystem.config.js', function (err, apps) {
       if (err) {
         console.error('Error while starting the apps:', err);
         return pm2.disconnect(); // Disconnect PM2 if there's an error
