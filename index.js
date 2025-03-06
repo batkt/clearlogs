@@ -27,13 +27,13 @@ pm2.connect(function (err) {
       }
     });
     
-    pm2.flush((err) => {
-      if (err) {
-        console.error('Failed to flush PM2 logs:', err);
-      } else {
-        console.log('PM2 logs flushed successfully.');
-      }
-    });
+    // pm2.flush((err) => {
+    //   if (err) {
+    //     console.error('Failed to flush PM2 logs:', err);
+    //   } else {
+    //     console.log('PM2 logs flushed successfully.');
+    //   }
+    // });
 
     // Starting the app with the ecosystem file
     pm2.start('/root/tureesShine/ecosystem.config.js', function (err, apps) {
